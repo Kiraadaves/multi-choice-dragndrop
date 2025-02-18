@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
@@ -126,6 +126,7 @@ interface DraggableTermProps {
 }
 
 function DraggableItem({ term, isDropped }: DraggableTermProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const [{ opacity }, drag] = useDrag(
     () => ({
       type: "term",
@@ -137,9 +138,12 @@ function DraggableItem({ term, isDropped }: DraggableTermProps) {
     [term]
   );
 
+  // Connect the drag ref to our element ref
+  drag(ref);
+
   return (
     <div
-      ref={drag}
+      ref={ref}
       className={cn(
         "cursor-move rounded-lg bg-gray-900 px-4 py-2 text-sm text-white transition-opacity",
         isDropped && "opacity-50"
@@ -166,6 +170,7 @@ function DropTarget({
   isWrong,
   droppedTerm,
 }: DropTargetProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: "term",
@@ -177,9 +182,12 @@ function DropTarget({
     [onDrop]
   );
 
+  // Connect the drop ref to our element ref
+  drop(ref);
+
   return (
     <div
-      ref={drop}
+      ref={ref}
       className={cn(
         "min-h-[80px] rounded-lg border-2 border-dashed p-4 transition-colors",
         isOver && "border-purple-500 bg-purple-50",
@@ -314,17 +322,19 @@ export default function DragDropQuiz() {
                   key={term.definition}
                   definition={term.definition}
                   onDrop={(item) => handleDrop(term.definition, item)}
-                  isCorrect={isCorrectMatch(
-                    term.definition,
-                    droppedTerms[term.definition]
-                  )}
-                  isWrong={
-                    droppedTerms[term.definition] &&
-                    !isCorrectMatch(
+                  isCorrect={Boolean(
+                    isCorrectMatch(
                       term.definition,
                       droppedTerms[term.definition]
                     )
-                  }
+                  )}
+                  isWrong={Boolean(
+                    droppedTerms[term.definition] &&
+                      !isCorrectMatch(
+                        term.definition,
+                        droppedTerms[term.definition]
+                      )
+                  )}
                   droppedTerm={droppedTerms[term.definition]}
                 />
               ))}
@@ -344,10 +354,10 @@ export default function DragDropQuiz() {
 
             <div className="mt-6 flex items-center justify-between">
               <button onClick={handleReset}>
-                <RotateCcw className="h-4 w-4" />
+                <RotateCcw className="h-6 w-6 text-purple-600" />
               </button>
               <button
-                className="bg-purple-600 hover:bg-purple-700"
+                className="bg-purple-600 hover:bg-purple-700 text-white rounded-md py-3 px-6"
                 onClick={handleContinue}
                 disabled={
                   Object.keys(droppedTerms).length !==
