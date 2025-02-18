@@ -7,7 +7,7 @@ const FrontPage = () => {
   const [activeTab, setActiveTab] = useState("multi-choice");
 
   return (
-    <div className="md:space-y-20 space-y-10">
+    <div className="md:space-y-20 space-y-10 ">
       <div className="flex flex-wrap mb-8 bg-gray-200 rounded-lg p-1">
         <button
           className={`flex-1 py-3 px-4 text-center rounded-md ${

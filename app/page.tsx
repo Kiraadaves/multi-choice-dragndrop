@@ -3,7 +3,7 @@ import FrontPage from ".";
 
 export default function Home() {
   return (
-    <div className="md:max-w-7xl max-w-9/10 mx-auto min-h-screen p-8 pb-10 gap-16 sm:p-20 ">
+    <div className="md:max-w-7xl max-w-9/10 mx-auto min-h-screen p-8 pb-10 gap-16 sm:p-20 flex flex-col justify-between">
       <main className=" p-4">
         <FrontPage />
       </main>
@@ -21,7 +21,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Learn
+          Git Repository
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -36,7 +36,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Examples
+          Chinwe Chukwuogor Nwankwo 2025
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -51,7 +51,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to nextjs.org →
+          Go to my portfolio →
         </a>
       </footer>
     </div>

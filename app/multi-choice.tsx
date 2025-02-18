@@ -135,9 +135,7 @@ export default function MultipleChoiceQuiz() {
             <ArrowLeft className="h-5 w-5 text-purple-600" />
           </button>
           <div className="flex flex-1 items-center justify-between">
-            <h2 className="text-sm text-gray-500">
-              Question {currentQuestion + 1}
-            </h2>
+            <h2 className=" text-gray-500">Question {currentQuestion + 1}</h2>
             <div className="flex gap-1">
               {questions.map((_, index) => (
                 <div
@@ -192,20 +190,23 @@ export default function MultipleChoiceQuiz() {
 
           {showHint && (
             <div className="rounded-lg bg-red-50 p-4 text-red-600">
-              <p className="text-sm">Think again!</p>
+              <p className="">Think again!</p>
               <p className="text-xs">{questions[currentQuestion].hint}</p>
             </div>
           )}
 
           {selectedAnswer === questions[currentQuestion].correctAnswer && (
             <div className="rounded-lg bg-green-50 p-4 text-green-600">
-              <p className="text-sm">Right!</p>
+              <p className="">Right!</p>
               <p className="text-xs">Great job! You got it correct.</p>
             </div>
           )}
 
           {selectedAnswer && (
-            <button className="w-full bg-purple-600" onClick={handleContinue}>
+            <button
+              className="w-full bg-purple-600 py-3 text-white rounded-md hover:bg-purple-800"
+              onClick={handleContinue}
+            >
               Continue
               <span className="ml-2">→</span>
             </button>

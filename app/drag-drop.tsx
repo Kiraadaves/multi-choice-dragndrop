@@ -145,7 +145,7 @@ function DraggableItem({ term, isDropped }: DraggableTermProps) {
     <div
       ref={ref}
       className={cn(
-        "cursor-move rounded-lg bg-gray-900 px-4 py-2 text-sm text-white transition-opacity",
+        "cursor-move rounded-lg bg-gray-900 px-4 py-2  text-white transition-opacity",
         isDropped && "opacity-50"
       )}
       style={{ opacity }}
@@ -196,11 +196,11 @@ function DropTarget({
         !droppedTerm && "border-gray-200"
       )}
     >
-      <p className="mb-2 text-sm text-gray-600">{definition}</p>
+      <p className="mb-2  text-gray-600">{definition}</p>
       {droppedTerm && (
         <div
           className={cn(
-            "inline-block rounded-lg px-3 py-1 text-sm",
+            "inline-block rounded-lg px-3 py-1 ",
             isCorrect
               ? "bg-green-100 text-green-700"
               : isWrong
@@ -290,9 +290,7 @@ export default function DragDropQuiz() {
               <button className="p-2">
                 <ArrowLeft className="h-5 w-5 text-purple-600" />
               </button>
-              <h2 className="text-sm font-medium">
-                Question {currentQuestion + 1}
-              </h2>
+              <h2 className=" font-medium">Question {currentQuestion + 1}</h2>
             </div>
             <div className="flex gap-1">
               {questions.map((_, index) => (
