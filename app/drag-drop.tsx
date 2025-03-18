@@ -138,7 +138,6 @@ function DraggableItem({ term, isDropped }: DraggableTermProps) {
     [term]
   );
 
-  // Connect the drag ref to our element ref
   drag(ref);
 
   return (
@@ -182,7 +181,6 @@ function DropTarget({
     [onDrop]
   );
 
-  // Connect the drop ref to our element ref
   drop(ref);
 
   return (
